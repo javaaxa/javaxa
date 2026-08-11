@@ -1,0 +1,351 @@
+/* --- Modern Dark GUI Palette --- */
+:root {
+  --font-gui: 'Space Grotesk', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --bg-dark: #08090d;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  
+  /* Brand Glow Colors */
+  --instagram-glow: rgba(225, 48, 108, 0.25);
+  --youtube-glow: rgba(255, 0, 0, 0.25);
+  --tiktok-glow: rgba(37, 244, 238, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+/* --- Fullscreen 4K Background --- */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  background-image: url('bg-image.jpg'); /* Replace with your 4K background filename */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.5);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 9, 13, 0.4);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- Top-Left Volume Widget --- */
+.volume-widget {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 14px;
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.volume-widget:hover {
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.volume-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 70px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  border: none;
+}
+
+/* --- Loader --- */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #040508;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner-wrapper {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #ffffff !important;
+  border-right-color: rgba(255, 255, 255, 0.3) !important;
+  animation: spin 1s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+}
+
+.spinner-core {
+  width: 10px;
+  height: 10px;
+  background: #ffffff !important;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #ffffff !important;
+}
+
+.loader-text {
+  margin-top: 20px;
+  font-family: var(--font-gui);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Ambient White Glows --- */
+.glow-sphere {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-1 {
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+}
+
+.glow-2 {
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+}
+
+/* --- Container --- */
+.container {
+  width: 100%;
+  max-width: 440px;
+  z-index: 1;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* --- Spinning Avatar with Pure White Ring --- */
+.avatar-container {
+  margin: 0 auto 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  padding: 0 !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.35) !important;
+}
+
+.avatar-container img,
+.avatar-img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  animation: pfp-spin 12s linear infinite !important;
+}
+
+.avatar-container:hover .avatar-img {
+  animation-play-state: paused !important;
+}
+
+@keyframes pfp-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.username {
+  font-family: var(--font-gui);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.bio {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+/* --- Links Stack --- */
+.links-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text-primary);
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+}
+
+.link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  margin-right: 16px;
+}
+
+.link-title {
+  font-family: var(--font-gui);
+  font-size: 1.05rem;
+  font-weight: 600;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.arrow-icon {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.link-card:hover .arrow-icon {
+  transform: translateX(4px);
+  color: var(--text-primary);
+}
+
+/* Brand Hover Effects */
+.link-card.instagram:hover {
+  border-color: rgba(225, 48, 108, 0.5);
+  box-shadow: 0 8px 25px var(--instagram-glow);
+}
+
+.link-card.youtube:hover {
+  border-color: rgba(255, 0, 0, 0.5);
+  box-shadow: 0 8px 25px var(--youtube-glow);
+}
+
+.link-card.tiktok:hover {
+  border-color: rgba(37, 244, 238, 0.5);
+  box-shadow: 0 8px 25px var(--tiktok-glow);
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+}
+
+footer p {
+  color: #ffffff !important;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
